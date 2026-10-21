@@ -117,7 +117,7 @@ function check(celebrate){
   const best=Math.max(...LINES.map(l=>l.filter(x=>st.marked.includes(x)).length));
   statusEl.textContent=wins.length?`BINGO × ${wins.length} · škrtnuto ${st.marked.length} z 25`:`Škrtnuto ${st.marked.length} z 25 · do binga chybí ${5-best}`;
   if(celebrate&&wins.length>st.won){boom();}
-  if(wins.length!==st.won){st.won=wins.length;save();}
+  if(celebrate||wins.length<st.won){if(wins.length!==st.won){st.won=wins.length;save();}}
 }
 function boom(){banner.hidden=false;requestAnimationFrame(()=>banner.classList.add("show"));if(navigator.vibrate)navigator.vibrate([60,40,120]);confetti();setTimeout(hideBanner,3200);}
 function hideBanner(){banner.classList.remove("show");setTimeout(()=>{banner.hidden=true;},400);}
